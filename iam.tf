@@ -50,6 +50,7 @@ data "aws_iam_policy_document" "deploy_policy_document" {
     effect = "Allow"
     actions = [
       "s3:DeleteObject",
+      "s3:GetObject",
       "s3:PutObject",
     ]
     resources = ["${aws_s3_bucket.serverless_deploy_bucket.arn}/*"]
