@@ -13,6 +13,7 @@ data "aws_iam_policy_document" "deploy_policy_document" {
   statement {
     effect = "Allow"
     actions = [
+      "s3:GetBucketLocation",
       "s3:ListBucket",
     ]
     resources = [aws_s3_bucket.serverless_deploy_bucket.arn]
