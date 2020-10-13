@@ -8,8 +8,29 @@ resource "aws_iam_user" "deploy_user" {
   }
 }
 
+data "aws_partition" "current" {
+  // Intentionally empty
+}
+
+data "aws_region" "current" {
+  // Intentionally empty
+}
+
+data "aws_caller_identity" "current" {
+  // Intentionally empty
+}
+
 data "aws_iam_policy_document" "deploy_policy_document" {
   version = "2012-10-17"
+  statement {
+    effect = "Allow"
+    actions = [
+      "cloudformation:CreateStack",
+      "cloudformation:DeleteStack",
+      "cloudformation:DescribeStacks",
+    ]
+    resources = ["arn:${data.aws_partition.current.partition}:cloudformation:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:stack/api-dev-test/*"]
+  }
   statement {
     effect = "Allow"
     actions = [
