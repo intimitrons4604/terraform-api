@@ -34,6 +34,7 @@ data "aws_iam_policy_document" "deploy_policy_document" {
     actions = [
       "cloudformation:CreateStack",
       "cloudformation:DeleteStack",
+      "cloudformation:DescribeStackEvents",
       "cloudformation:DescribeStacks",
     ]
     resources = ["arn:${data.aws_partition.current.partition}:cloudformation:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:stack/api-dev-test/*"]
