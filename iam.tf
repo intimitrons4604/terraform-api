@@ -25,6 +25,13 @@ data "aws_iam_policy_document" "deploy_policy_document" {
   statement {
     effect = "Allow"
     actions = [
+      "cloudformation:ValidateTemplate",
+    ]
+    resources = ["*"]
+  }
+  statement {
+    effect = "Allow"
+    actions = [
       "cloudformation:CreateStack",
       "cloudformation:DeleteStack",
       "cloudformation:DescribeStacks",
